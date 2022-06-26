@@ -15,10 +15,10 @@ client.on("messageCreate", (message) => {
   if (message.author.bot) return;
   if (!message.guild) return;
   if (!message.content.startsWith(prefix)) return;
-  if (!message.member) message .member = message.guild.fetchMember(message);
+  if (!message.member) message.member = message.guild.fetchMember(message);
 
   // * Split the arguments and make it lowercase
-  let arguments = message .content.slice(prefix.length).trim().split(/ +/g);
+  let arguments = message.content.slice(prefix.length).trim().split(/ +/g);
   let username = arguments.shift().toLowerCase();
 
   // * Make sure that there is a username
@@ -34,14 +34,14 @@ client.on("messageCreate", (message) => {
         .setTitle(username.toUpperCase())
         .setURL(`https://eune.whatismymmr.com/${username}`)
         .setDescription(
-          `Top ${100 - data.percentile}% din ${
-            data.closestRank
+          `Top ${100 - data.percentile}% din ${data.closestRank
           }`
         );
 
       message.channel.send({ embeds: [embed] });
     })
     .catch(function (error) {
+      console.log(error);
       const embed = new MessageEmbed()
         .setColor("#DF0101")
         .setTitle("Nu am găsit jucătorul!");
